@@ -15,6 +15,9 @@ export default {};
   text-align: center;
   line-height: 44px;
   box-shadow: 0px 1px 1px rgb(236, 218, 218);
+  position: fixed;
+  z-index: 9999;
+  width: 100%;
 }
 .left,
 .right {
