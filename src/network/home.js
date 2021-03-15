@@ -9,7 +9,7 @@ export function getSwiperImg() {
     return new Promise((resolve, reject) => {
         setTimeout(() => resolve(), 1000)
     }).then(() =>
-        'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1737847891,3749213644&fm=26&gp=0.jpg'
+        'https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3262273075,3895616999&fm=26&gp=0.jpg'
     ).catch(() => console.log(error) );
 }
 export function getRecommendViews() {

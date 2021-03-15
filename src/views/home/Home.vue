@@ -2,6 +2,8 @@
   <div>
     <home-swiper class="home-swiper" :picture="swiperImg"></home-swiper>
     <home-recommend-view :recommendViews="recommendViews"></home-recommend-view>
+    <home-feature></home-feature>
+    
     <ul>
       <li>sdf</li>
       <li>sdf</li>
@@ -34,11 +36,12 @@
 <script>
 import HomeSwiper from "./childComps/HomeSwiper";
 import HomeRecommendView from "./childComps/HomeRecommendView.vue";
+import HomeFeature from "./childComps/HomeFeature";
 
 import { getHomeData, getSwiperImg, getRecommendViews } from "network/home.js";
 
 export default {
-  components: { HomeSwiper, HomeRecommendView },
+  components: { HomeSwiper, HomeRecommendView, HomeFeature },
   data() {
     return {
       dataList: null,
