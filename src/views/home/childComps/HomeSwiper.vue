@@ -21,26 +21,23 @@
 import { Swiper, SwiperItem } from "components/common/swiper/index.js";
 
 export default {
-    name: "HomeSwiper",
-    components: {
-        Swiper,
-        SwiperItem
+  name: "HomeSwiper",
+  components: {
+    Swiper,
+    SwiperItem,
+  },
+  props: {
+    picture: {
+      type: String,
+      default() {
+        return "";
+      },
     },
-    props: {
-        picture: {
-            type: String,
-            default() {
-                return ''
-            }
-        }
-    },
-    data() {
-        return {
-            
-        }
-    },
-}
+  },
+  data() {
+    return {};
+  },
+};
 </script>
 <style lang="">
-    
 </style>

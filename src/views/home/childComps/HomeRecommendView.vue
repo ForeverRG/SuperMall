@@ -21,19 +21,19 @@ export default {
 </script>
 <style>
 .recommend-view {
-    display: flex;
-    width: 100%;
-    text-align: center;
-    font-size: 14px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+  display: flex;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .rv-item {
-    flex: 1;
+  flex: 1;
 }
 .rv-item img {
-    height: 70px;
-    width: 70px;
-    padding-bottom: 3px;
+  height: 70px;
+  width: 70px;
+  padding-bottom: 3px;
 }
 </style>
