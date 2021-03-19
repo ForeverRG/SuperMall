@@ -1,13 +1,17 @@
 <template>
-  <div>
-    <home-swiper class="home-swiper" :picture="swiperImg"></home-swiper>
-    <home-recommend-view :recommendViews="recommendViews"></home-recommend-view>
-    <home-feature></home-feature>
-    <tab-control
-      :tabControlTitles="titles"
-      @itemClick="itemClick"
-    ></tab-control>
-    <goods-list :goodsList="goods"></goods-list>
+  <div id="home">
+    <scroll class="content">
+      <home-swiper class="home-swiper" :picture="swiperImg"></home-swiper>
+      <home-recommend-view
+        :recommendViews="recommendViews"
+      ></home-recommend-view>
+      <home-feature></home-feature>
+      <tab-control
+        :tabControlTitles="titles"
+        @itemClick="itemClick"
+      ></tab-control>
+      <goods-list :goodsList="goodsData"></goods-list>
+    </scroll>
   </div>
 </template>
 
@@ -17,6 +21,7 @@ import HomeRecommendView from "./childComps/HomeRecommendView.vue";
 import HomeFeature from "./childComps/HomeFeature";
 import TabControl from "components/content/tabControl/TabControl";
 import GoodsList from "components/content/goodsList/GoodsList";
+import Scroll from "../../components/common/scroll/Scroll.vue";
 
 import {
   getHomeData,
@@ -32,6 +37,7 @@ export default {
     HomeFeature,
     TabControl,
     GoodsList,
+    Scroll,
   },
   data() {
     return {
@@ -40,19 +46,25 @@ export default {
       swiperImg: "",
       titles: ["男生", "女生", "动漫"],
       goodsList: {
-        boy: { page: 0, list: [] },
-        girl: { page: 0, list: [] },
-        comic: { page: 0, list: [] },
+        男生: { page: 0, list: [] },
+        女生: { page: 0, list: [] },
+        动漫: { page: 0, list: [] },
       },
+      currentType: "男生",
     };
   },
   created() {
-      this.getHomeData(), //获取首页数据
+    this.getHomeData(), //获取首页数据
       this.getSwiperImg(), //获取banner
       this.getRecommendViews(), //获取推荐数据
-      this.getGoods("男生", 1), //获取商品数据
-      this.getGoods("女生", 1),
-      this.getGoods("动漫", 1);
+      this.getGoods("男生"), //获取商品数据
+      this.getGoods("女生"),
+      this.getGoods("动漫");
+  },
+  computed: {
+    goodsData() {
+      return this.goodsList[this.currentType].list;
+    },
   },
   methods: {
     getHomeData() {
@@ -71,17 +83,25 @@ export default {
         this.recommendViews = res;
       });
     },
-    getGoods(type, page) {
+    getGoods(type) {
+      const page = ++this.goodsList[type].page;
       getGoods(type, page).then((res) => {
-        this.goods = res.data;
+        this.goodsList[type].list.push(...res.data);
+        this.goodsList[type].page++;
       });
     },
 
     itemClick(index) {
       switch (index) {
         case 0:
+          this.currentType = "男生";
           break;
-
+        case 1:
+          this.currentType = "女生";
+          break;
+        case 2:
+          this.currentType = "动漫";
+          break;
         default:
           break;
       }
@@ -90,8 +110,12 @@ export default {
 };
 </script>
 
-<style>
+<style >
 .home-swiper {
   padding-top: 44px;
+}
+.content {
+  border: 1px solid;
+  height: 500px;
 }
 </style>
