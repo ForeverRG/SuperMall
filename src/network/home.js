@@ -7,14 +7,14 @@ export function getHomeData() {
 export function getSwiperImg() {
     // return request({ url: '/image' })
     return new Promise((resolve, reject) => {
-        setTimeout(() => resolve(), 1000)
+        setTimeout(() => resolve(), 10)
     }).then(() =>
         'https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3262273075,3895616999&fm=26&gp=0.jpg'
     ).catch(() => console.log(error));
 }
 export function getRecommendViews() {
     return new Promise((resolve, reject) => {
-        setTimeout(() => resolve(), 1000)
+        setTimeout(() => resolve(), 10)
     }).then(() =>
         [
             { id: 1, link: '#1', text: '哈哈', view: 'https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3271193886,4029775912&fm=26&gp=0.jpg' },
