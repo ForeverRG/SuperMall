@@ -117,24 +117,16 @@ export default {
 
 <style scope>
 .home {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 100;
-  width: 100%;
+  position: relative;
   height: 100vh;
-  overflow: hidden;
 }
-.home-swiper {
-  padding-top: 44px;
-}
+
 .scroll-content {
-  height: 600px;
   overflow: hidden;
-  /* position: absolute; */
-  top: 44px;
-  /* bottom: 49px;
+  position: absolute;
+  left: 0;
   right: 0;
-  left: 0;  */
+  top: 44px;
+  bottom: 49px;
 }
 </style>

@@ -19,9 +19,8 @@ export default {
       this.bScroll = new BScroll(this.$refs.wrapper, {
         click: true,
       });
-    }, 20);
-
-    console.log(this.bScroll);
+      console.log(this.bScroll);
+    }, 1000);
   },
 };
 </script>
