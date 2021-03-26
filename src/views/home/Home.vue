@@ -3,7 +3,14 @@
     <nav-bar class="home-nav">
       <div slot="center">购物车</div>
     </nav-bar>
-    <scroll class="scroll-content">
+    <scroll
+      class="scroll-content"
+      ref="scroll"
+      :pullUpLoad="true"
+      :probeType="3"
+      @scroll="contentScroll"
+      @pullingUp="pullingUpLoadMore"
+    >
       <home-swiper class="home-swiper" :picture="swiperImg"></home-swiper>
       <home-recommend-view
         :recommendViews="recommendViews"
@@ -16,6 +23,7 @@
       ></tab-control>
       <goods-list :goodsList="goodsData"></goods-list>
     </scroll>
+    <back-top @click.native="backTopClick" v-show="isBackTopShow" />
   </div>
 </template>
 <script>
@@ -26,6 +34,7 @@ import TabControl from "components/content/tabControl/TabControl";
 import GoodsList from "components/content/goodsList/GoodsList";
 import NavBar from "components/common/navbar/NavBar.vue";
 import Scroll from "../../components/common/scroll/Scroll.vue";
+import BackTop from "../../components/content/backTop/BackTop.vue";
 
 import {
   getHomeData,
@@ -43,6 +52,7 @@ export default {
     TabControl,
     GoodsList,
     Scroll,
+    BackTop,
   },
   data() {
     return {
@@ -56,6 +66,7 @@ export default {
         动漫: { page: 0, list: [] },
       },
       currentType: "男生",
+      isBackTopShow: false,
     };
   },
   created() {
@@ -72,6 +83,14 @@ export default {
     },
   },
   methods: {
+    contentScroll(position) {
+      this.isBackTopShow = -position.y > 500;
+    },
+    //上拉加载
+    pullingUpLoadMore() {
+      this.getGoods(this.currentType);
+      this.$refs.scroll.refreshScroll();
+    },
     getHomeData() {
       getHomeData().then((res) => {
         console.log(res);
@@ -95,7 +114,7 @@ export default {
         this.goodsList[type].list.push(...res.data);
       });
     },
-
+    //tabbar切换
     itemClick(index) {
       switch (index) {
         case 0:
@@ -110,6 +129,10 @@ export default {
         default:
           break;
       }
+    },
+    //回顶部
+    backTopClick() {
+      this.$refs.scroll.scrollTo(0, 0, 500);
     },
   },
 };
