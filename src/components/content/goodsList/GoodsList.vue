@@ -4,6 +4,7 @@
       v-for="(item, index) in goodsList"
       :key="index"
       :itemData="item"
+      path="/detail"
     ></goods-list-item>
   </div>
 </template>
