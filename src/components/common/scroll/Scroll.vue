@@ -38,6 +38,10 @@ export default {
       //先判断bScroll兑现是否为null，为null的话不进行刷新操作
       this.bScroll && this.bScroll.refresh();
     },
+    //完成上拉加载更多
+    finishPullUp() {
+      this.bScroll && this.bScroll.finishPullUp();
+    }
   },
   mounted() {
     //setTimeout(() => {

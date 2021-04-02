@@ -133,6 +133,9 @@ export default {
       getGoods(type, page).then((res) => {
         this.goodsList[type].page++;
         this.goodsList[type].list.push(...res.data);
+
+        //完成上拉加载更多,必须此步骤，否则只能上拉加载一次
+        this.$refs.scroll.finishPullUp();
       });
     },
     //tabbar切换
