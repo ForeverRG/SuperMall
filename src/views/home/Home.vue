@@ -69,7 +69,7 @@ export default {
       isBackTopShow: false,
     };
   },
-  
+
   created() {
     this.getHomeData(), //获取首页数据
       this.getSwiperImg(), //获取banner
@@ -77,12 +77,12 @@ export default {
       this.getGoods("男生"), //获取商品数据
       this.getGoods("女生"),
       this.getGoods("动漫");
-
   },
 
   mounted() {
+    const func = this.debounce(this.$refs.scroll.refresh, 100);
     //监听事件总线中的刷新bscroll信号,在回调函数中处理刷新bscroll
-    this.$bus.$on("refreshScroll", () => this.$refs.scroll.refresh());
+    this.$bus.$on("refreshScroll", () => func());
   },
 
   computed: {
@@ -91,6 +91,19 @@ export default {
     },
   },
   methods: {
+    //bscroll防抖函数
+    debounce(func, delay) {
+      let timer = null;
+      return function (...args) {
+        if (timer) {
+          clearTimeout(timer);
+        }
+        timer = setTimeout(() => {
+          func.apply(this, args);
+        }, delay);
+      };
+    },
+    //显示回到顶部组件
     contentScroll(position) {
       this.isBackTopShow = -position.y > 500;
     },
