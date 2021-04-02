@@ -25,6 +25,10 @@ export default {
     };
   },
   methods: {
+    //获取当前滚动的y位置
+    getScrollY() {
+      return this.bScroll.y;
+    },
     scrollTo(x = 0, y = 0, time = 500) {
       this.bScroll.scrollTo(x, y, time);
     },
@@ -34,14 +38,14 @@ export default {
     },
     //解决法案二：刷新bscroll,这种方案可以不用延迟加载bScroll组件
     refresh() {
-      console.log("刷新bScroll");
+      //console.log("刷新bScroll");
       //先判断bScroll兑现是否为null，为null的话不进行刷新操作
       this.bScroll && this.bScroll.refresh();
     },
     //完成上拉加载更多
     finishPullUp() {
       this.bScroll && this.bScroll.finishPullUp();
-    }
+    },
   },
   mounted() {
     //setTimeout(() => {

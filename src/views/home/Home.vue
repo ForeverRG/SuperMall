@@ -67,6 +67,7 @@ export default {
       },
       currentType: "男生",
       isBackTopShow: false,
+      currentScrollY: 0,
     };
   },
 
@@ -77,6 +78,17 @@ export default {
       this.getGoods("男生"), //获取商品数据
       this.getGoods("女生"),
       this.getGoods("动漫");
+  },
+  //当前路由激活时触发
+  activated() {
+    //滚动到之前记录的位置
+    this.$refs.scroll.scrollTo(0, this.currentScrollY, 0);
+    this.$refs.scroll.refresh();
+  },
+  //当前路由未激活时触发
+  deactivated() {
+    //保存当前scrollY位置
+    this.currentScrollY = this.$refs.scroll.getScrollY();
   },
 
   mounted() {
