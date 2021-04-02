@@ -69,6 +69,7 @@ export default {
       isBackTopShow: false,
     };
   },
+  
   created() {
     this.getHomeData(), //获取首页数据
       this.getSwiperImg(), //获取banner
@@ -76,7 +77,14 @@ export default {
       this.getGoods("男生"), //获取商品数据
       this.getGoods("女生"),
       this.getGoods("动漫");
+
   },
+
+  mounted() {
+    //监听事件总线中的刷新bscroll信号,在回调函数中处理刷新bscroll
+    this.$bus.$on("refreshScroll", () => this.$refs.scroll.refresh());
+  },
+
   computed: {
     goodsData() {
       return this.goodsList[this.currentType].list;
@@ -89,7 +97,7 @@ export default {
     //上拉加载
     pullingUpLoadMore() {
       this.getGoods(this.currentType);
-      this.$refs.scroll.refreshScroll();
+      this.$refs.scroll.refresh();
     },
     getHomeData() {
       getHomeData().then((res) => {
