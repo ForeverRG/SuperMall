@@ -2,16 +2,16 @@
     <div>
         <swiper>
             <swiper-item>
-                <img :src="picture" alt='' />
+                <img :src="picture" alt='' @load="imgLoad" />
             </swiper-item>
             <swiper-item>
-                <img :src="picture" alt='' />
+                <img :src="picture" alt='' @load="imgLoad" />
             </swiper-item>
             <swiper-item>
-                <img :src="picture" alt='' />
+                <img :src="picture" alt='' @load="imgLoad" />
             </swiper-item>
             <swiper-item>
-                <img :src="picture" alt='' />
+                <img :src="picture" alt='' @load="imgLoad"/>
             </swiper-item>
         </swiper>
 
@@ -36,6 +36,11 @@ export default {
   },
   data() {
     return {};
+  },
+  methods: {
+    imgLoad() {
+      this.$emit("swiperImgLoad");
+    },
   },
 };
 </script>

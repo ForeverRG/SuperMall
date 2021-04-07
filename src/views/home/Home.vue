@@ -3,6 +3,13 @@
     <nav-bar class="home-nav">
       <div slot="center">购物车</div>
     </nav-bar>
+    <tab-control
+      class="home-top-tab-control"
+      v-show="isHomeTopTabControlShow"
+      :tabControlTitles="titles"
+      @itemClick="itemClick"
+      ref="tabControl1"
+    ></tab-control>
     <scroll
       class="scroll-content"
       ref="scroll"
@@ -11,12 +18,17 @@
       @scroll="contentScroll"
       @pullingUp="pullingUpLoadMore"
     >
-      <home-swiper class="home-swiper" :picture="swiperImg"></home-swiper>
+      <home-swiper
+        class="home-swiper"
+        :picture="swiperImg"
+        @swiperImgLoad="swiperImgLoad"
+      ></home-swiper>
       <home-recommend-view
         :recommendViews="recommendViews"
       ></home-recommend-view>
       <home-feature></home-feature>
       <tab-control
+        ref="tabControl2"
         class="home-tab-control"
         :tabControlTitles="titles"
         @itemClick="itemClick"
@@ -68,6 +80,8 @@ export default {
       currentType: "男生",
       isBackTopShow: false,
       currentScrollY: 0,
+      isHomeTopTabControlShow: false,
+      tabControlOffsetY: 0,
     };
   },
 
@@ -118,6 +132,8 @@ export default {
     //显示回到顶部组件
     contentScroll(position) {
       this.isBackTopShow = -position.y > 500;
+      //显示顶部tabcontrol
+      this.isHomeTopTabControlShow = -position.y > this.tabControlOffsetY;
     },
     //上拉加载
     pullingUpLoadMore() {
@@ -165,10 +181,18 @@ export default {
         default:
           break;
       }
+
+      //同步两个tabcontrol的currentindex
+      this.$refs.tabControl1.currentIndex = index;
+      this.$refs.tabControl2.currentIndex = index;
     },
     //回顶部
     backTopClick() {
       this.$refs.scroll.scrollTo(0, 0, 500);
+    },
+    //swiper图片加载完成触发
+    swiperImgLoad() {
+      this.tabControlOffsetY = this.$refs.tabControl2.$el.offsetTop;
     },
   },
 };
@@ -187,5 +211,12 @@ export default {
   right: 0;
   top: 44px;
   bottom: 49px;
+}
+
+.home-top-tab-control {
+  position: relative;
+  top: 44px;
+  z-index: 9;
+  background: white;
 }
 </style>
