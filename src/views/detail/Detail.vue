@@ -1,17 +1,19 @@
 <template lang="">
   <div class="detail">
-    <detail-tab-bar :titles="titles"></detail-tab-bar>
+    <detail-nav-bar :titles="titles"></detail-nav-bar>
     <scroll></scroll>
   </div>
 </template>
 <script>
 import Scroll from "components/common/scroll/Scroll.vue";
-import DetailTabBar from "./childComps/DetailTabBar";
+import DetailNavBar from './childComps/DetailNavBar'
+import NavBar from "components/common/navbar/NavBar";
 
 export default {
   components: {
     Scroll,
-    DetailTabBar,
+    NavBar,
+    DetailNavBar,
   },
 
   data() {
@@ -21,5 +23,6 @@ export default {
   },
 };
 </script>
-<style lang="">
+<style>
+
 </style>
