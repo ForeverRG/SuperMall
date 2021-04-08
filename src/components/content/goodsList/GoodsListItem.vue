@@ -32,7 +32,7 @@ export default {
     },
     //点击跳转到详情页
     itemClick() {
-      this.$router.push(this.path);
+      this.$router.push("/detail/" + this.itemData.name);
     },
   },
 };
