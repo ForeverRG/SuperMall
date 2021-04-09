@@ -2,7 +2,7 @@
   <div class="detail-nav-bar">
     <nav-bar class="nav-bar">
       <div slot="left" @click="back">
-        <img src="~assets/img/fanhui.png" alt=""/>
+        <img src="~assets/img/fanhui.png" alt="" />
       </div>
       <div slot="center" class="title">
         <div v-for="(item, index) in titles" class="title-item" :key="index">
@@ -31,19 +31,22 @@ export default {
 
   methods: {
     back() {
-      this.$router.back();
+      this.$router.go(-2);
     },
   },
 };
 </script>
 <style >
+.nav-bar {
+  background: pink;
+}
 .nav-bar img {
-  width: 100%;
+  width: 80%;
 }
 .title {
   display: flex;
+  color: white;
 }
-
 .title-item {
   flex: 1;
 }

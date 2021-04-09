@@ -142,7 +142,7 @@ export default {
     },
     getHomeData() {
       getHomeData().then((res) => {
-        console.log(res);
+        // console.log(res);
         this.dataList = res;
       });
     },
@@ -218,5 +218,9 @@ export default {
   top: 44px;
   z-index: 9;
   background: white;
+}
+.home-nav {
+  color: white;
+  background: pink;
 }
 </style>

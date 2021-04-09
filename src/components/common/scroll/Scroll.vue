@@ -54,7 +54,7 @@ export default {
       pullUpLoad: this.pullUpLoad, //开启上拉加载
       probeType: this.probeType, //开启侦听滑动
     });
-    console.log(this.bScroll);
+    // console.log(this.bScroll);
     //监听滚动事件
     if (this.probeType == 3 || this.probeType == 2) {
       this.bScroll.on("scroll", (position) => {
